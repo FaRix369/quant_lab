@@ -9,6 +9,12 @@ def returns_correlation(assets):
     correlation = df.corr()
     return correlation
 
+def prices_correlation(assets):
+    df = pd.DataFrame()
+    for ticker, asset in assets.items():
+        df[ticker] = asset['adj_close']
+    correlation = df.corr()
+    return correlation
 
 if __name__ == "__main__":
     assets={
@@ -16,5 +22,10 @@ if __name__ == "__main__":
         'SPY' : q_returns_indexed('SPY', '1y')
     }
 
-    correlation = returns_correlation(assets)
-    print(correlation) 
+    correlation_returns = returns_correlation(assets)
+    print(correlation_returns)
+
+    print()
+
+    correlations_prices = prices_correlation(assets)
+    print(correlations_prices)
