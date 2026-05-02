@@ -5,6 +5,9 @@ def excess_return(rp, rm):
     rp, rm = rp.align(rm, join='inner')
     return rp - rm
 
+def tracking_error(excess_series):
+    return excess_series.std()
+
 if __name__ == "__main__":
     df_asml = q_returns_indexed('ASML', '1y')
     df_spy = q_returns_indexed('SPY', '1y')
@@ -13,3 +16,5 @@ if __name__ == "__main__":
     rm = log_return(df_spy)
 
     print(excess_return(rp, rm))
+    print()
+    print(tracking_error(excess_return(rp, rm)))
