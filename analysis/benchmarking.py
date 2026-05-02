@@ -8,6 +8,9 @@ def excess_return(rp, rm):
 def tracking_error(excess_series):
     return excess_series.std()
 
+def information_ratio(excess, tracking):
+    return (excess.mean() * 252) / (tracking * (252 ** 0.5))
+
 if __name__ == "__main__":
     df_asml = q_returns_indexed('ASML', '1y')
     df_spy = q_returns_indexed('SPY', '1y')
@@ -15,6 +18,11 @@ if __name__ == "__main__":
     rp = log_return(df_asml)
     rm = log_return(df_spy)
 
-    print(excess_return(rp, rm))
+    excess = excess_return(rp, rm)
+    print(excess)
     print()
-    print(tracking_error(excess_return(rp, rm)))
+    tracking = tracking_error(excess)
+    print(tracking)
+    print()
+    info = information_ratio(excess, tracking)
+    print(info)
