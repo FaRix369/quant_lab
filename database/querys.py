@@ -1,14 +1,15 @@
 from database.db_connection import get_engine
 import pandas as pd
 
+PERIOD_MAP = {
+    "1d": "1 day","5d": "5 days","1mo": "1 month","3mo": "3 month","6mo": "6 months",
+    "1y": "1 year","2y": "2 years","5y": "5 years","10y": "10 years"
+}
+
 
 'QUERY RETURNS-----------------------------------------------------------------------------------------------------------------------------------------------------'
 def q_returns(ticker,period):
    
-    PERIOD_MAP = {
-    "1d": "1 day","5d": "5 days","1mo": "1 month","3mo": "3 month","6mo": "6 months","1y": "1 year","2y": "2 years","5y": "5 years","10y": "10 years"
-    }
-
     if period == 'max':
         date_filter = ""
     elif period == 'ytd':
@@ -27,10 +28,6 @@ def q_returns(ticker,period):
 
 def q_returns_indexed(ticker,period):
    
-    PERIOD_MAP = {
-    "1d": "1 day","5d": "5 days","1mo": "1 month","3mo": "3 month","6mo": "6 months","1y": "1 year","2y": "2 years","5y": "5 years","10y": "10 years"
-    }
-
     if period == 'max':
         date_filter = ""
     elif period == 'ytd':
