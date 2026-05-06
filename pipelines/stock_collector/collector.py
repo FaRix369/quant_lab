@@ -1,10 +1,10 @@
-from api_client import history_price
-from transform import transform_data
-from db_writer import writer
+from pipelines.stock_collector.api_client import history_price
+from pipelines.stock_collector.transform import transform_data
+from pipelines.stock_collector.db_writer import writer
 from cli.cli import get_ticker_period
 
 def collect (ticker, period):
-    print(f'Collecting {ticker} fro {period}')
+    print(f'Collecting {ticker} from {period}')
     data = history_price(ticker, period)
     df = transform_data(data, ticker)
     writer(df)
