@@ -20,6 +20,8 @@ The project is organized in four layers:
 
 ### **System Data Flow**
 
+```
+
 yfinance API  
     ↓  
 pipelines/stock\_collector/    (v0.1)  
@@ -47,7 +49,8 @@ analysis/                     (v0.3)
     benchmarking.py → excess return, tracking error, information ratio  
     ↑  
 cli/cli.py          → provides ticker, period and window from terminal  
----
+```
+
 
 ### **Cross-cutting Modules**
 
