@@ -6,15 +6,18 @@ Analysis layer that calculates performance ratios, correlation matrices and benc
 
 ### **Data Flow**
 
+```
 PostgreSQL (stock\_prices)  
     ↓  
-database/querys.py  → extracts adj\_close filtered by ticker and period  
+database/querys.py   → extracts adj\_close filtered by ticker and period  
     ↓  
-ratios.py                    → Sharpe, Sortino, Calmar, Beta, Alpha  
-correlation.py            → returns and prices correlation matrix  
+ratios.py            → Sharpe, Sortino, Calmar, Beta, Alpha  
+correlation.py       → returns and prices correlation matrix  
 benchmarking.py      → excess return, tracking error, information ratio  
     ↑  
-cli.py                         → provides ticker and period from terminal  
+cli.py               → provides ticker and period from terminal
+```
+  
 ---
 
 ### **Modules**
@@ -39,7 +42,8 @@ Performance ratios module. Calculates industry-standard metrics to evaluate the 
 
 ### **Usage**
 
-python \-m analysis.ratios \<TICKER\> \<PERIOD\>  
+python \-m analysis.ratios \<TICKER\> \<PERIOD\>
+
 ---
 
 #### **`correlation.py`**
@@ -57,7 +61,8 @@ Correlation module. Measures the degree of joint movement between multiple asset
 
 ### **Usage**
 
-python \-m analysis.correlation  
+python \-m analysis.correlation
+
 ---
 
 #### **`benchmarking.py`**
