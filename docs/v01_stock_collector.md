@@ -6,6 +6,7 @@ ETL pipeline that extracts historical stock price data from Yahoo Finance via `y
 
 ### **Data Flow**
 
+```
 yfinance API  
     ↓  
 api\_client.py   → extracts raw DataFrame (OHLCV \+ Adj Close)  
@@ -17,23 +18,27 @@ db\_writer.py    → inserts into PostgreSQL (stock\_prices)
 collector.py    → orchestrates the three modules above  
     ↑  
 cli.py          → provides ticker and period from terminal
+```
+
 
 ### **Database Schema**
-
+```
 CREATE TABLE stock\_prices (  
-    id            SERIAL PRIMARY KEY,  
-    ticker       TEXT NOT NULL,  
-    date         DATE NOT NULL,  
+    id          SERIAL PRIMARY KEY,  
+    ticker      TEXT NOT NULL,  
+    date        DATE NOT NULL,  
     open        NUMERIC,  
-    high         NUMERIC,  
-    low           NUMERIC,  
-    close        NUMERIC,  
+    high        NUMERIC,  
+    low         NUMERIC,  
+    close       NUMERIC,  
     adj\_close  NUMERIC,  
     volume      BIGINT  
 );
 
 ALTER TABLE stock\_prices  
-ADD CONSTRAINT unique\_ticker\_date UNIQUE (ticker, date);  
+ADD CONSTRAINT unique\_ticker\_date UNIQUE (ticker, date);
+```
+
 ---
 
 ### **Modules**
