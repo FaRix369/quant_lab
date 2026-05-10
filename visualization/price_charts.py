@@ -1,26 +1,38 @@
-import matplotlib
 from pipelines.stock_collector.collector import collect
+import matplotlib
 import matplotlib.pyplot as plt
 matplotlib.use('TkAgg')
-import numpy as np
+from matplotlib.ticker import EngFormatter
 
 def close_price(date, close, adj_close):
     fig, ax = plt.subplots()
     ax.plot(date, close, label='Close Price')
     ax.plot(date, adj_close, label='Adj Close Price')
     ax.legend()
-    ax.set_title("Closes Prices")
+    ax.set_title('Closes Prices')
     ax.set_xlabel('Date (days)')
     ax.set_ylabel('Prices')
     plt.show()
     return fig
 
+def volume_chart(date, volume):
+    fig, ax = plt.subplots()
+    ax.bar(date, volume, label='Volume')
+    ax.yaxis.set_major_formatter(EngFormatter())
+    ax.legend()
+    ax.set_title('Volume')
+    ax.set_xlabel('Date (days)')
+    ax.set_ylabel('Volume')
+    plt.show()
+    return fig
 
 if __name__ == "__main__":
-    df_asml = collect('ASML', '1y')
+    df_asml = collect('ASML', '6mo')
     date = df_asml['date']
     close = df_asml['close']
     adj = df_asml['adj_close']
+    volume = df_asml['volume']
     print(df_asml)
 
     cl = close_price(date, close, adj)
+    vol = volume_chart(date, volume)
