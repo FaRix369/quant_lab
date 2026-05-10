@@ -5,18 +5,20 @@
 Feature engineering layer that calculates financial metrics over the adjusted close price series stored in PostgreSQL. Each module is independent and can be used directly from the terminal or imported by other modules.
 
 ### **Data Flow**
-
+```
 PostgreSQL (stock\_prices)  
     ↓  
 database/querys.py  → extracts adj\_close filtered by ticker and period  
     ↓  
 returns.py        → log, simple, arithmetic returns  
-rolling.py          → rolling mean, std, min, max  
-volatility.py       → historic, annualized, rolling, EWMA volatility  
-drawdown.py   → drawdown, duration, recovery  
+rolling.py        → rolling mean, std, min, max  
+volatility.py     → historic, annualized, rolling, EWMA volatility  
+drawdown.py       → drawdown, duration, recovery  
 zscore.py         → historic and mobile z-score  
     ↑  
-cli.py                → provides ticker, period and window from terminal  
+cli.py            → provides ticker, period and window from terminal
+```
+  
 ---
 
 ### **Modules**
@@ -39,7 +41,8 @@ Returns module. Calculates different types of financial return over the adjusted
 
 ### **Usage**
 
-python \-m feature\_engineering.returns \<TICKER\> \<PERIOD\>  
+**python \-m feature\_engineering.returns \<TICKER\> \<PERIOD\>**
+
 ---
 
 #### **`rolling.py`**
@@ -57,7 +60,8 @@ Rolling statistics module. Provides base functions consumed both directly and by
 
 ### **Usage**
 
-python \-m feature\_engineering.rolling \<TICKER\> \<PERIOD\> \<WINDOW\>
+**python \-m feature\_engineering.rolling \<TICKER\> \<PERIOD\> \<WINDOW\>**
+
 
 ---
 
@@ -78,7 +82,8 @@ Volatility module. Calculates different dispersion measures of the logarithmic r
 
 ### **Usage**
 
-python \-m feature\_engineering.volatility \<TICKER\> \<PERIOD\> \<WINDOW\>  
+**python \-m feature\_engineering.volatility \<TICKER\> \<PERIOD\> \<WINDOW\>**
+
 ---
 
 #### **`drawdown.py`**
@@ -98,7 +103,8 @@ Drawdown module. Measures price decline from historical highs and quantifies the
 
 ### **Usage**
 
-python \-m feature\_engineering.drawdown \<TICKER\> \<PERIOD\> \<WINDOW\>  
+**python \-m feature\_engineering.drawdown \<TICKER\> \<PERIOD\> \<WINDOW\>**
+
 ---
 
 #### **`zscore.py`**
@@ -118,4 +124,4 @@ Z-score module. Standardizes log returns to identify statistically atypical valu
 
 ### **Usage**
 
-python \-m feature\_engineering.zscore \<TICKER\> \<PERIOD\> \<WINDOW\>  
+**python \-m feature\_engineering.zscore \<TICKER\> \<PERIOD\> \<WINDOW\>** 
