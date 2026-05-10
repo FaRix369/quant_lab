@@ -8,6 +8,7 @@ def collect (ticker, period):
     data = history_price(ticker, period)
     df = transform_data(data, ticker)
     writer(df)
+    return df
 
 
 if __name__ == '__main__':
