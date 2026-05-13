@@ -42,3 +42,22 @@ def q_returns_indexed(ticker,period):
                     ORDER BY date
                     """, connection, index_col='date')
     return read
+
+'QUERY FOR CHARTS'
+
+def q_price_chart(ticker, period):
+
+    if period == 'max':
+        date_filter = ""
+    elif period == 'ytd':
+        date_filter = "AND date >= DATE_TRUNC('year', CURRENT_DATE)"
+    else:
+        date_filter = f"AND date > (CURRENT_DATE - INTERVAL '{PERIOD_MAP[period]}')" 
+
+    connection = get_engine()
+
+    read = pd.read_sql(f"""SELECT date, adj_close, close, volume FROM stock_prices 
+                    WHERE ticker = '{ticker}' {date_filter}
+                    ORDER BY date
+                    """, connection, index_col='date')
+    return read

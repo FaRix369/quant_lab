@@ -1,6 +1,6 @@
-from pipelines.stock_collector.collector import collect
 import matplotlib
 import matplotlib.pyplot as plt
+from database.querys import q_price_chart
 matplotlib.use('TkAgg')
 from matplotlib.ticker import EngFormatter
 
@@ -27,12 +27,11 @@ def volume_chart(date, volume):
     return fig
 
 if __name__ == "__main__":
-    df_asml = collect('ASML', '6mo')
-    date = df_asml['date']
+    df_asml = q_price_chart('ASML', '6mo')
+    date = df_asml.index
     close = df_asml['close']
     adj = df_asml['adj_close']
     volume = df_asml['volume']
-    print(df_asml)
 
     cl = close_price(date, close, adj)
     vol = volume_chart(date, volume)

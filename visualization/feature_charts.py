@@ -1,8 +1,8 @@
 from matplotlib.ticker import PercentFormatter
 from feature_engineering.returns import log_return
 from feature_engineering.volatility import rolling_volatility
-from pipelines.stock_collector.collector import collect
 import matplotlib
+from database.querys import q_price_chart
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
@@ -29,8 +29,8 @@ def volatility_chart(date, volatility):
     return fig
 
 if __name__ == "__main__":
-    df_asml = collect('ASML', '6mo')
-    date = df_asml['date']
+    df_asml = q_price_chart('ASML', '6mo')
+    date = df_asml.index
     volume = df_asml['volume']
     returns = log_return(df_asml)
     volatility = rolling_volatility(returns, 20)
