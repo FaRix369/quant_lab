@@ -7,10 +7,10 @@
 
 This project is built on systems thinking and systems theory — each version is a layer that builds on the previous one, forming a system that grows in complexity and capability organically. Every design decision reflects a systemic perspective: separation of responsibilities, modularity, emergent behavior from simple components, and feedback between layers. The end goal is not just a collection of tools, but a system that thinks.
 
-- **v0.1 — Planting the Seed** — ETL pipeline: extraction, transformation, load ✅
-- **v0.2 — Taking Root** — Feature engineering: returns, volatility, drawdown, z-score ✅
-- **v0.3 — First Sprout** — Analysis: performance ratios, correlation, benchmarking ✅
-- **v0.4 — ?** — Visualization
+- **v0.1 — Planting the Seed** — ETL pipeline: extraction, transformation, load 
+- **v0.2 — Taking Root** — Feature engineering: returns, volatility, drawdown, z-score 
+- **v0.3 — First Sprout** — Analysis: performance ratios, correlation, benchmarking 
+- **v0.4 — First Leaves** — Visualization: price charts, feature charts, analysis charts
 - **v0.5 — ?** — Backtesting engine (C++/Rust)
 - **v0.6 — ?** — Machine learning integration
 - **v0.7 — ?** — Simulations: Monte Carlo, GBM, agent-based models
@@ -161,5 +161,30 @@ python -m analysis.ratios ASML 1y
 ```
 
 ---
+## v0.4 — Visualization | *First Leaves*
+
+*The system starts to show what it knows.*
+
+Generates charts from data stored in PostgreSQL. Each module covers a specific category of charts — prices, feature engineering metrics, and analysis results. Uses matplotlib with TkAgg backend.
+
+**System requirement:**
+```bash
+sudo apt install python3-tk
+```
+
+| Module | Role |
+|---|---|
+| `price_charts.py` | Close price and adjusted close price over time. Trading volume with engineering-formatted Y axis. |
+| `feature_charts.py` | Daily log returns as color-coded bar chart. Rolling volatility (window=20) over time. |
+| `analysis_chart.py` | Correlation scatter plot with regression line between two assets. Excess return vs benchmark bar chart. |
+
+**Usage:**
+```bash
+python -m visualization.
+```
+```bash
+python -m visualization.price_charts
+```
+
 
 *QUANT_LAB, 2026*

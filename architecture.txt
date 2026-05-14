@@ -19,3 +19,8 @@ QUANT_LAB
 3.1)ratios.py
 3.2)correlation.py 
 3.3)benchmarking.py
+
+4)VISUALIZATION (v0.4)
+4.1)price_charts.py
+4.2)feature_charts.py
+4.3)analysis.py
