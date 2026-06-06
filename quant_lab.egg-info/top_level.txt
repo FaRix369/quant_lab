@@ -1,4 +1,8 @@
+analysis
 cli
 database
+docs
 feature_engineering
 pipelines
+tests
+visualization

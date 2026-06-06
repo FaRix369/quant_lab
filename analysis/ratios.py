@@ -58,7 +58,7 @@ if __name__ == "__main__":
     read = q_returns(ticker,period)
     read_indexed = q_returns_indexed(ticker, period)
 
-    benchmark = pd.read_csv('/home/farix369/laboratory/quant_lab/tests/fixtures/spy_1y.csv', index_col='date', parse_dates=True)
+    benchmark = q_returns_indexed(ticker='SPY', period=period)
 
     print('SHARPE RATIO:')
     sharpe = sharpe_ratio(read)

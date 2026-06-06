@@ -14,7 +14,7 @@ def writer (df):
         connection.commit()     #transaction
     except Exception:
         connection.rollback()
-        print("Connection Error. The modifications have been undone")
+        print(f"Connection Error: {e}")
     finally:
         cursor.close()
         connection.close()

@@ -6,9 +6,13 @@ from cli.cli import get_ticker_period
 def collect (ticker, period):
     print(f'Collecting {ticker} from {period}')
     data = history_price(ticker, period)
-    df = transform_data(data, ticker)
-    writer(df)
-    return df
+    if data is None:
+        print(f'Collection failed for {ticker}. Check ticker symbol and period.')
+        return None
+    else:
+        df = transform_data(data, ticker)
+        writer(df)
+        return df
 
 
 if __name__ == '__main__':

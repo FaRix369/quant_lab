@@ -1,12 +1,16 @@
 README.md
 pyproject.toml
+analysis/__init__.py
+analysis/benchmarking.py
+analysis/correlation.py
+analysis/ratios.py
 cli/__init__.py
 cli/cli.py
 database/__init__.py
 database/db_connection.py
 database/querys.py
 feature_engineering/__init__.py
-feature_engineering/drawdon.py
+feature_engineering/drawdown.py
 feature_engineering/returns.py
 feature_engineering/rolling.py
 feature_engineering/volatility.py
@@ -21,3 +25,7 @@ quant_lab.egg-info/PKG-INFO
 quant_lab.egg-info/SOURCES.txt
 quant_lab.egg-info/dependency_links.txt
 quant_lab.egg-info/top_level.txt
+visualization/__init__.py
+visualization/analysis_charts.py
+visualization/feature_charts.py
+visualization/price_charts.py
