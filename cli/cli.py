@@ -1,25 +1,46 @@
 import argparse
 
-def get_ticker_period():
-    parser = argparse.ArgumentParser(description='Stock Data Pipeline: API data collection, data transformation, and writing to table')
-    parser.add_argument('ticker')
-    parser.add_argument('period')
-    args = parser.parse_args()
+def parse_args():
+    parser = argparse.ArgumentParser(description='Quantitative finance laboratory: data collection, transformation, storage, analysis and visualization.')
+    subparsers = parser.add_subparsers(dest='command')
 
-    ticker = args.ticker
-    period = args.period
+    status_db = subparsers.add_parser('status', help='Status DB')
 
-    return ticker, period
+    collector = subparsers.add_parser('collector', help='Collector Ticker-Period')
+    collector.add_argument('--ticker')
+    collector.add_argument('--period')
 
-def get_window():
-    parser = argparse.ArgumentParser(description='Feature Engineering: calculate rolling volatility')
-    parser.add_argument('ticker')
-    parser.add_argument('period')
-    parser.add_argument('window', type=int)
-    args = parser.parse_args()
+    analysis = subparsers.add_parser('analysis', help='Analysis Ticker-Period --functions(benchmarking, correlations, ratios)')
+    analysis.add_argument('--ticker')
+    analysis.add_argument('--period')
+    analysis.add_argument('--functions', nargs='+')
+    analysis.add_argument('--benchmark')
 
-    ticker = args.ticker
-    period = args.period
-    window = args.window
+    feature_engineering = subparsers.add_parser('feature_engineering', help='Feature Engineering Ticker-Period-Window --functions(drawdown, returns, rolling, volatility, zscore)')
+    feature_engineering.add_argument('--ticker')
+    feature_engineering.add_argument('--period')
+    feature_engineering.add_argument('--functions', nargs='+')
+    feature_engineering.add_argument('--window')
 
-    return ticker, period, window
+    visualization = subparsers.add_parser('visualization', help='Visualization Ticker-Period --function(analysis_charts, feature_charts, price_charts)')
+    visualization.add_argument('--ticker')
+    visualization.add_argument('--period')
+    visualization.add_argument('--functions', nargs='+')
+
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+
+    args = parse_args()
+    print(args)
+
+
+
+
+
+
+
+
+
+
