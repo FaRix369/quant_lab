@@ -1,4 +1,3 @@
-from cli.cli import get_window
 from database.querys import q_returns
 
 def function_drawdown(df):       #drawdown day by day
@@ -43,33 +42,3 @@ def recovery_time(drawdown):
         elif i >= 0:
             break
     return recovery
-     
-
-if __name__ == "__main__":
-
-    ticker, period, window = get_window()
-    df = q_returns(ticker,period)
-
-    print('DAILY DRAWDOWN:')
-    drawdown = function_drawdown(df)
-    print(drawdown)
-    print()
-    print('MAX DRAWDOWN:')
-    max_drop = max_drawdown(drawdown)
-    print(max_drop)
-    print()
-    print('PEAK PRICE:')
-    peak = peak_price(df)
-    print(peak)
-    print()
-    print('TROUGH PRICE:')
-    trough = trough_price(df)
-    print(trough)
-    print()
-    print('DRAWDOWN DURATION:')
-    max_duration = drawdown_duration(drawdown)
-    print(max_duration)
-    print()
-    print('RECOVERY TIME:')
-    recovery = recovery_time(drawdown)
-    print(recovery)
