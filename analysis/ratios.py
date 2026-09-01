@@ -1,6 +1,5 @@
 import pandas as pd
 from database.querys import q_returns, q_returns_indexed
-from cli.cli import get_ticker_period
 from feature_engineering.volatility import historic_simple_volatility
 from feature_engineering.returns import log_return_digit, log_return
 from feature_engineering.drawdown import max_drawdown, function_drawdown
@@ -51,31 +50,3 @@ def alpha_ratio(df, benchmark, rf=0.05):
 
     alpha = rp - (rf + beta *(rm - rf))
     return alpha
-
-
-if __name__ == "__main__":
-    ticker, period = get_ticker_period()
-    read = q_returns(ticker,period)
-    read_indexed = q_returns_indexed(ticker, period)
-
-    benchmark = q_returns_indexed(ticker='SPY', period=period)
-
-    print('SHARPE RATIO:')
-    sharpe = sharpe_ratio(read)
-    print(sharpe)
-    print()
-    print('SORTINO RATIO:')
-    sortino = sortino_ratio(read)
-    print(sortino)
-    print()
-    print('CALMAR RATIO:')
-    calmar = calmar_ratio(read)
-    print(calmar)
-    print()
-    print('BETA RATIO:')
-    beta = beta_ratio(read_indexed, benchmark)
-    print(beta)
-    print()
-    print('ALPHA RATIO:')
-    alpha = alpha_ratio(read_indexed, benchmark)
-    print(alpha)
