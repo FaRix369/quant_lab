@@ -5,6 +5,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Quant2026
       - POSTGRES_DB=quant_lab
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   app:
     build: .
@@ -12,3 +14,6 @@ services:
       - db
     env_file:
       - .env
+
+volumes:
+  postgres_data:
